@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>User form with reload</title>
+</head>
+<body>
+    <div>
+
+        <h2>Enter user data</h2>
+        <form action="add" th:action="@{/add}" th:object="${userData}" method="post">
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" th:field="*{name}" /></td>
+                    <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+                </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td><input type="text" th:field="*{age}" />0</td>
+                    <td th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</td>
+                </tr>
+                <tr>
+                    <td><button type="submit">Submit</button></td>
+
+                </tr>
+            </table>
+        </form>
+        <div th:if="${addeduser} != null">
+            <p> Name <span th:text="${addeduser.name}"></span></p>
+            <p> Age <span th:text="${addeduser.age}"></span></p>
+        </div>
+    </div>
+
+</body>
+</html>
